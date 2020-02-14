@@ -2,8 +2,10 @@ package edu.htc.blitstein.caih313.tddstack.engine;
 import static org.junit.Assert.*;
 
 import edu.htc.blitstein.caih313.tddstack.IStackable;
+import edu.htc.blitstein.caih313.tddstack.resource.campus.Faculty;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 public class TddStackTest {
     TddStack tdd;
@@ -19,7 +21,7 @@ public class TddStackTest {
     @After
     public void tearDown() throws Exception {
     }
-
+    @Test
     public void testSet(){
 
         long expected = TddStack.DEFAULT_DEPTH;
@@ -28,38 +30,42 @@ public class TddStackTest {
         assertEquals(expected, result, 0.001);
 
     }
-    public void testIsEmpty(){
-
-
-        TddStack objresult = new TddStack();
-        boolean result = objresult.isEmpty();
-        assertEquals(true, result);
+    @Test
+    public void testNewStackIsEmpty() {
+        TddStack tddStack = new TddStack();
+        assertTrue(tddStack.isEmpty());
     }
-    public void testIsFull(){
+    @Test
+    public void testNewStackIsFull(){
         TddStack objresult = new TddStack();
-        boolean result = objresult.isFull();
-        assertEquals(false, result);
+        assertTrue(objresult.isFull());
 
     }
-    public void testPop(){
-        TddStack objresult = new TddStack();
-        IStackable result = objresult.pop();
-        assertEquals(null, result);
+    @Test
+    public void testPopIsPush() {
+        TddStack tddStack = new TddStack();
+        //Faculty implements IStackable
+        IStackable iStackableOrig = new Faculty();
+        tddStack.push(iStackableOrig);
+        IStackable iStackablePopped = tddStack.pop();
+        assertEquals(iStackableOrig, iStackablePopped);
     }
+    @Test
     public void testPushEmpty(){
         TddStack objresult = new TddStack();
         objresult.push(obj1);
-        boolean result = objresult.isEmpty();
-        assertEquals(false, result);
+        assertFalse(objresult.isEmpty());
+
 
     }
+    @Test
     public void testPushFull(){
         TddStack objresult = new TddStack(3);
         objresult.push(obj1);
         objresult.push(obj2);
         objresult.push(obj3);
-        boolean result = objresult.isFull();
-        assertEquals(true, result);
+        assertTrue(objresult.isFull());
+
 
     }
 

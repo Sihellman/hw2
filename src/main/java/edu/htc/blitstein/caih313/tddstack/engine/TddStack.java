@@ -12,15 +12,18 @@ public class TddStack {
 
     }
     public boolean isEmpty(){
+        return false;
 
     }
     public boolean isFull(){
+        return false;
 
     }
     public void push(IStackable obj){
 
     }
     public IStackable pop(){
+        return null;
 
     }
 }
